@@ -1,0 +1,66 @@
+{
+  "name": "ant-react-date-selector",
+  "version": "0.0.1",
+  "description": "Kibana style super date selector",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "license": "MIT",
+  "author": "Adarsh Pastakia <adarshpastakia@outlook.com> (http://adarshpastakia.github.io/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adarshpastakia/ant-react-date-selector"
+  },
+  "dependencies": {
+    "antd": "^3.19.8",
+    "moment": "^2.24.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.2.3",
+    "@babel/core": "7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
+    "@babel/preset-env": "7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/jest": "24.0.11",
+    "@types/node": "11.11.4",
+    "@types/react": "16.8.8",
+    "@types/react-dom": "16.8.3",
+    "babel-cli": "^7.0.0-beta.3",
+    "css-loader": "^3.2.0",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "node-sass": "^4.11.0",
+    "prettier": "1.18.2",
+    "react-app-rewired": "^2.1.3",
+    "react-scripts": "2.1.8",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^1.0.0",
+    "stylelint": "^9.10.1",
+    "stylelint-order": "^2.0.0",
+    "typescript": "3.3.4000",
+    "typestyle": "^2.0.4"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build && mv build docs",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject",
+    "build:clean": "rimraf ./dist",
+    "build:babel": "babel src/lib --out-dir dist --extensions '.ts','.tsx'",
+    "build:typings": "tsc -p tsconfig.build.json --outDir dist",
+    "bump-version": "npm --no-git-tag-version version",
+    "dist": "npm run build:clean && npm run build:babel && npm run build:typings && npm run bump-version"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
