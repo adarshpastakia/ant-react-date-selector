@@ -1,27 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Input } from "antd";
 import { DateUtil, DateValue } from "..";
-import { stylesheet } from "typestyle";
 import { RdsRelativeInput } from "./RdsRelativeInput";
 import moment from "moment";
-
-const css = stylesheet({
-  label: {
-    fontWeight: 500,
-    fontSize: ".8em",
-    fontVariant: "small-caps"
-  },
-  error: {
-    margin: "8px 0",
-    color: "red",
-    opacity: 0.5,
-    padding: "8px 0 0"
-  },
-  toolbar: {
-    padding: "8px 16px",
-    textAlign: "right"
-  }
-});
 
 export const RdsRelative: React.FC<{
   value: DateValue;
@@ -52,18 +33,18 @@ export const RdsRelative: React.FC<{
   return (
     <div>
       <div style={{ padding: 16 }}>
-        <div className={css.label}>From</div>
+        <div className="ards-label--section">From</div>
         <Input.Group compact>
           <RdsRelativeInput value={start} onDateChange={setStart} />
         </Input.Group>
         <br />
-        <div className={css.label}>To</div>
+        <div className="ards-label--section">To</div>
         <Input.Group compact>
           <RdsRelativeInput value={end} onDateChange={setEnd} />
         </Input.Group>
-        {isErrored && <div className={css.error}>Invalid date ranges</div>}
+        {isErrored && <div className="ards-label--error">Invalid date ranges</div>}
       </div>
-      <div className={css.toolbar}>
+      <div className="ards-toolbar">
         <Button type="primary" onClick={onApply} size="small">
           Apply
         </Button>

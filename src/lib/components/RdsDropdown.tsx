@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { InputProps } from "antd/es/input";
 import { DateValue } from "..";
 import { Tabs } from "antd";
-import { stylesheet } from "typestyle";
 import { RdsPresets } from "./RdsPresets";
 import { RdsAbsolute } from "./RdsAbsolute";
 import { isDateLike } from "../utils/Predicates";
@@ -13,18 +12,6 @@ interface RdsInputProps extends InputProps {
   value: DateValue;
   onDateChange: (v: DateValue) => void;
 }
-
-const css = stylesheet({
-  overlay: {
-    width: 550,
-    minHeight: 200,
-    $nest: {
-      "& .ant-tabs-bar": {
-        margin: 0
-      }
-    }
-  }
-});
 
 export const RdsDropdown: React.FC<RdsInputProps> = ({ value, onDateChange }) => {
   const [activeTab, setActiveTab] = useState("quick");
@@ -41,7 +28,7 @@ export const RdsDropdown: React.FC<RdsInputProps> = ({ value, onDateChange }) =>
   }, [value]);
 
   return (
-    <Tabs className={css.overlay} activeKey={activeTab} onChange={setActiveTab}>
+    <Tabs className="ards-dropdown--overlay" activeKey={activeTab} onChange={setActiveTab}>
       <Tabs.TabPane key="quick" tab="Quick Select">
         <RdsPresets value={value} onDateChange={onDateChange} />
       </Tabs.TabPane>

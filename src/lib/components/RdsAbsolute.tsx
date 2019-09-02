@@ -4,31 +4,10 @@ import RangeCalendar from "rc-calendar/lib/RangeCalendar";
 // @ts-ignore
 import TimePickerPanel from "rc-time-picker/lib/Panel";
 import moment, { Moment } from "moment";
-import { stylesheet } from "typestyle";
 import { Button } from "antd";
 import { DateUtil, DateValue } from "..";
 import { isDateLike } from "../utils/Predicates";
-
-const css = stylesheet({
-  root: {
-    $nest: {
-      "& .ant-calendar-input": {
-        textAlign: "center"
-      },
-      "& .ant-calendar-range.ant-calendar-time .ant-calendar-range-middle": {
-        height: "100%",
-        background: "rgba(0,0,0,.1)",
-        width: 1,
-        padding: 0
-      },
-      "& .ant-calendar-footer-btn": {
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "row-reverse"
-      }
-    }
-  }
-});
+import { ConfigConsumer, ConfigConsumerProps } from "antd/lib/config-provider";
 
 export class RdsAbsolute extends React.PureComponent<{
   value: DateValue;
@@ -58,29 +37,43 @@ export class RdsAbsolute extends React.PureComponent<{
   }
 
   render() {
+    const _self = this;
+
     return (
-      <div className={css.root}>
-        <RangeCalendar
-          prefixCls="ant-calendar"
-          className="ant-calendar-time"
-          showDateInput
-          showOk={false}
-          showToday={false}
-          selectedValue={[moment(this.state.value[0]), moment(this.state.value[1])]}
-          renderFooter={() => (
-            <Button size="small" onClick={this.onApply} disabled={!this.state.valid} type="primary">
-              Apply
-            </Button>
-          )}
-          timePicker={
-            <TimePickerPanel
-              prefixCls="ant-calendar-time-picker"
-              className="ant-calendar-time-picker-column-3"
-            />
-          }
-          onChange={this.dateChanged}
-          seperator=""
-        />
+      <div className="ards-date-range">
+        <ConfigConsumer>
+          {({ getPrefixCls }: ConfigConsumerProps) => {
+            const prefixCls = getPrefixCls("calendar");
+            return (
+              <RangeCalendar
+                prefixCls={prefixCls}
+                className={`${prefixCls}-time`}
+                showDateInput
+                showOk={false}
+                showToday={false}
+                selectedValue={[moment(this.state.value[0]), moment(this.state.value[1])]}
+                renderFooter={() => (
+                  <Button
+                    size="small"
+                    onClick={_self.onApply}
+                    disabled={!this.state.valid}
+                    type="primary"
+                  >
+                    Apply
+                  </Button>
+                )}
+                timePicker={
+                  <TimePickerPanel
+                    prefixCls={`${prefixCls}-time-picker`}
+                    className={`${prefixCls}-time-picker-column-3`}
+                  />
+                }
+                onChange={_self.dateChanged}
+                seperator=""
+              />
+            );
+          }}
+        </ConfigConsumer>
       </div>
     );
   }

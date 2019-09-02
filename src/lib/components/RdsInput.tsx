@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { DateUtil, DateValue } from "..";
 import { Icon, Input } from "antd";
 import { InputProps } from "antd/es/input";
@@ -19,10 +19,7 @@ export const RdsInput: React.FC<RdsInputProps> = ({
   ...props
 }) => {
   const [isOver, setIsOver] = useState(false);
-  const [displayLabel, setDisplayLabel] = useState(DateUtil.label(value));
-  useEffect(() => {
-    setDisplayLabel(DateUtil.label(value));
-  }, [value]);
+  const displayLabel = useMemo(() => DateUtil.label(value), [value]);
 
   const canClear = allowClear && !!value;
 

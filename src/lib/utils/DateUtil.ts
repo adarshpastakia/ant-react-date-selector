@@ -67,14 +67,14 @@ const getDecade = (dt: Moment, isStart: boolean = true) => {
   dt.add(diff * (isStart ? -1 : 1), "year");
 };
 
-const roundUpDate = (dt: Moment, diff: string, grain: unitOfTime.StartOf) => {
+const roundUpDate = (dt: Moment, diff: string, grain: unitOfTime.DurationConstructor) => {
   dt.endOf(grain);
-  diff && dt.add(grain, diff as any);
+  diff && dt.add(parseInt(diff, 10), grain);
 };
 
-const roundDownDate = (dt: Moment, diff: string, grain: unitOfTime.StartOf) => {
+const roundDownDate = (dt: Moment, diff: string, grain: unitOfTime.DurationConstructor) => {
   dt.startOf(grain);
-  diff && dt.add(grain, diff as any);
+  diff && dt.add(parseInt(diff, 10), grain);
 };
 
 const parseDatePart = (dt: string, isStart: boolean = true): DateValue => {

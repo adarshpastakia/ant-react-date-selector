@@ -1,14 +1,76 @@
 @import "~antd/dist/antd.less";
 
-.ards-dropdown-overlay {
-  padding: 0;
-  z-index: 1050;
+@debug @ant-prefix;
 
-  & .ant-popover-arrow {
-    display: none
+.ards {
+  &-dropdown {
+    padding: 0;
+    z-index: 1050;
+
+    & .@{ant-prefix}-popover-arrow {
+      display: none;
+    }
+
+    & .@{ant-prefix}-popover-inner-content {
+      padding: 0;
+    }
   }
 
-  & .ant-popover-inner-content {
-    padding: 0
+  &-dropdown--overlay {
+    min-height: 200px;
+    width: 550px;
+
+    & .ant-tabs-bar {
+      margin: 0;
+    }
+  }
+
+  &-quick--link {
+    display: inline-block;
+    font-size: 0.8em;
+    width: 120px;
+  }
+
+  &-label--section {
+    font-size: 0.8em;
+    font-variant: small-caps;
+    font-weight: 500;
+  }
+
+  &-label--error {
+    color: @error-color;
+    margin: 8px 0;
+    opacity: 0.5;
+    padding: 8px 0 0;
+  }
+
+  &-toolbar {
+    padding: 8px 16px;
+    text-align: right;
+  }
+
+  &-date-range {
+    & .@{ant-prefix}-calendar-date-panel {
+      margin-top: -35px;
+    }
+
+    & .@{ant-prefix}-calendar-input {
+      display: none;
+    }
+
+    &
+      .@{ant-prefix}-calendar-range.@{ant-prefix}-calendar-time
+      .@{ant-prefix}-calendar-range-middle {
+      background: rgba(0, 0, 0, 0.1);
+      height: 100%;
+      padding: 0;
+      width: 1px;
+    }
+
+    & .@{ant-prefix}-calendar-footer-btn {
+      align-items: center;
+      display: flex;
+      flex-direction: row-reverse;
+    }
   }
 }

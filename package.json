@@ -40,8 +40,7 @@
     "style-loader": "^1.0.0",
     "stylelint": "^9.10.1",
     "stylelint-order": "^2.0.0",
-    "typescript": "3.3.4000",
-    "typestyle": "^2.0.4"
+    "typescript": "3.3.4000"
   },
   "scripts": {
     "start": "react-app-rewired start",

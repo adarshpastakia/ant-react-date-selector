@@ -25,18 +25,23 @@ export const Tester = () => {
   const [date, setDate] = useState<string | undefined>("$week|$now");
 
   return (
-    <>
-      <div className="x-section">Component</div>
-      <Form layout="inline">
-        <Form.Item label="Date Selector">
-          <ReactDateSelector value={date} onDateChange={setDate} allowClear />
-        </Form.Item>
-      </Form>
-    </>
+    <Form layout="inline">
+      <Form.Item label="Date Selector">
+        <ReactDateSelector value={date} onDateChange={setDate} allowClear />
+      </Form.Item>
+    </Form>
   );
 };
-
 ```
+> Component uses basic ant.design InputProps
+> 
+> Props
+> - `value`: `string`
+> - `onDateChange`: `(date: string) => void`
+> - `open`: `boolean`
+> - `onVisibleChange`: `(open: boolean) => void`
+
+---
 
 - Util to parse date values and labels
 
@@ -60,5 +65,4 @@ DateUtil.parse("$day-7|$now");
  * Return single date string
  */
 DateUtil.parse("$day-7");
-
 ```

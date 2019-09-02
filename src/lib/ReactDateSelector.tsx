@@ -12,16 +12,18 @@ interface ReactDatePickerProps extends InputProps {
   onVisibleChange?: (visible: boolean) => void;
 }
 
-export const ReactDateSelector: React.FC<ReactDatePickerProps> = React.forwardRef<Input,
-  ReactDatePickerProps>(({ onDateChange, onVisibleChange, open, ...props }, ref) => {
+export const ReactDateSelector: React.FC<ReactDatePickerProps> = React.forwardRef<
+  Input,
+  ReactDatePickerProps
+>(({ onDateChange, onVisibleChange, open, ...props }, ref) => {
   const [isOpen, setOpen] = useState(open);
 
   useEffect(() => {
     setOpen(open);
   }, [open]);
   const changeVisible = (v: boolean) => {
-    setOpen(v);
-    if (onVisibleChange) {
+    setOpen(!props.readOnly && v);
+    if (!props.readOnly && onVisibleChange) {
       onVisibleChange(v);
     }
   };
@@ -39,8 +41,8 @@ export const ReactDateSelector: React.FC<ReactDatePickerProps> = React.forwardRe
       placement="bottomLeft"
       visible={isOpen}
       onVisibleChange={changeVisible}
-      overlayClassName="ards-dropdown-overlay"
-      content={isOpen && <RdsDropdown {...props} onDateChange={updateValue}/>}
+      overlayClassName="ards-dropdown"
+      content={<RdsDropdown {...props} onDateChange={updateValue} />}
     >
       <RdsInput onClear={updateValue} forwardedRef={ref} {...props} />
     </Popover>

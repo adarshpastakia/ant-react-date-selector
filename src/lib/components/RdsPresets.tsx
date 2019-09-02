@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Divider, Input, Select } from "antd";
+import { Button, Divider, Input } from "antd";
 import { DateUtil, DateValue } from "..";
-import { stylesheet } from "typestyle";
 import { RdsRelativeInput } from "./RdsRelativeInput";
 import { DateParts } from "../utils/DateParts";
 
@@ -17,14 +16,6 @@ const Presets: { [key: string]: string } = {
   quarterLast: "$quarter-1",
   yearLast: "$year-1"
 };
-
-const css = stylesheet({
-  label: {
-    fontWeight: 500,
-    fontSize: ".8em",
-    fontVariant: "small-caps"
-  }
-});
 
 export const RdsPresets: React.FC<{
   value: DateValue;
@@ -50,7 +41,7 @@ export const RdsPresets: React.FC<{
 
   return (
     <div style={{ padding: 16 }}>
-      <div className={css.label}>Quick Select</div>
+      <div className="ards-label--section">Quick Select</div>
       <Input.Group compact>
         <RdsRelativeInput value={relDate} onDateChange={setRelDate} />
         <Button type="primary" onClick={selectRelative} style={{ width: 80, padding: 0 }}>
@@ -58,10 +49,10 @@ export const RdsPresets: React.FC<{
         </Button>
       </Input.Group>
       <Divider type="horizontal" />
-      <div className={css.label}>Presets</div>
+      <div className="ards-label--section">Presets</div>
       <div>
         {Object.keys(Presets).map(key => (
-          <div style={{ width: 120, display: "inline-block", fontSize: ".8em" }} key={key}>
+          <div className="ards-quick--link" key={key}>
             <a onClick={() => selectPreset(Presets[key])}>{DateUtil.label(Presets[key])}</a>
           </div>
         ))}
