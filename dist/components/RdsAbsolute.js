@@ -13,13 +13,13 @@ var _Panel = _interopRequireDefault(require("rc-time-picker/lib/Panel"));
 
 var _moment = _interopRequireDefault(require("moment"));
 
-var _typestyle = require("typestyle");
-
 var _antd = require("antd");
 
 var _ = require("..");
 
 var _Predicates = require("../utils/Predicates");
+
+var _configProvider = require("antd/lib/config-provider");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42,27 +42,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var css = (0, _typestyle.stylesheet)({
-  root: {
-    $nest: {
-      "& .ant-calendar-input": {
-        textAlign: "center"
-      },
-      "& .ant-calendar-range.ant-calendar-time .ant-calendar-range-middle": {
-        height: "100%",
-        background: "rgba(0,0,0,.1)",
-        width: 1,
-        padding: 0
-      },
-      "& .ant-calendar-footer-btn": {
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "row-reverse"
-      }
-    }
-  }
-});
 
 var RdsAbsolute =
 /*#__PURE__*/
@@ -137,29 +116,35 @@ function (_React$PureComponent) {
     value: function render() {
       var _this2 = this;
 
+      var _self = this;
+
       return _react.default.createElement("div", {
-        className: css.root
-      }, _react.default.createElement(_RangeCalendar.default, {
-        prefixCls: "ant-calendar",
-        className: "ant-calendar-time",
-        showDateInput: true,
-        showOk: false,
-        showToday: false,
-        selectedValue: [(0, _moment.default)(this.state.value[0]), (0, _moment.default)(this.state.value[1])],
-        renderFooter: function renderFooter() {
-          return _react.default.createElement(_antd.Button, {
-            size: "small",
-            onClick: _this2.onApply,
-            disabled: !_this2.state.valid,
-            type: "primary"
-          }, "Apply");
-        },
-        timePicker: _react.default.createElement(_Panel.default, {
-          prefixCls: "ant-calendar-time-picker",
-          className: "ant-calendar-time-picker-column-3"
-        }),
-        onChange: this.dateChanged,
-        seperator: ""
+        className: "ards-date-range"
+      }, _react.default.createElement(_configProvider.ConfigConsumer, null, function (_ref) {
+        var getPrefixCls = _ref.getPrefixCls;
+        var prefixCls = getPrefixCls("calendar");
+        return _react.default.createElement(_RangeCalendar.default, {
+          prefixCls: prefixCls,
+          className: "".concat(prefixCls, "-time"),
+          showDateInput: true,
+          showOk: false,
+          showToday: false,
+          selectedValue: [(0, _moment.default)(_this2.state.value[0]), (0, _moment.default)(_this2.state.value[1])],
+          renderFooter: function renderFooter() {
+            return _react.default.createElement(_antd.Button, {
+              size: "small",
+              onClick: _self.onApply,
+              disabled: !_this2.state.valid,
+              type: "primary"
+            }, "Apply");
+          },
+          timePicker: _react.default.createElement(_Panel.default, {
+            prefixCls: "".concat(prefixCls, "-time-picker"),
+            className: "".concat(prefixCls, "-time-picker-column-3")
+          }),
+          onChange: _self.dateChanged,
+          seperator: ""
+        });
       }));
     }
   }]);

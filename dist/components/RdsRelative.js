@@ -11,8 +11,6 @@ var _antd = require("antd");
 
 var _ = require("..");
 
-var _typestyle = require("typestyle");
-
 var _RdsRelativeInput = require("./RdsRelativeInput");
 
 var _moment = _interopRequireDefault(require("moment"));
@@ -28,24 +26,6 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var css = (0, _typestyle.stylesheet)({
-  label: {
-    fontWeight: 500,
-    fontSize: ".8em",
-    fontVariant: "small-caps"
-  },
-  error: {
-    margin: "8px 0",
-    color: "red",
-    opacity: 0.5,
-    padding: "8px 0 0"
-  },
-  toolbar: {
-    padding: "8px 16px",
-    textAlign: "right"
-  }
-});
 
 var RdsRelative = function RdsRelative(_ref) {
   var value = _ref.value,
@@ -95,23 +75,23 @@ var RdsRelative = function RdsRelative(_ref) {
       padding: 16
     }
   }, _react.default.createElement("div", {
-    className: css.label
+    className: "ards-label--section"
   }, "From"), _react.default.createElement(_antd.Input.Group, {
     compact: true
   }, _react.default.createElement(_RdsRelativeInput.RdsRelativeInput, {
     value: start,
     onDateChange: setStart
   })), _react.default.createElement("br", null), _react.default.createElement("div", {
-    className: css.label
+    className: "ards-label--section"
   }, "To"), _react.default.createElement(_antd.Input.Group, {
     compact: true
   }, _react.default.createElement(_RdsRelativeInput.RdsRelativeInput, {
     value: end,
     onDateChange: setEnd
   })), isErrored && _react.default.createElement("div", {
-    className: css.error
+    className: "ards-label--error"
   }, "Invalid date ranges")), _react.default.createElement("div", {
-    className: css.toolbar
+    className: "ards-toolbar"
   }, _react.default.createElement(_antd.Button, {
     type: "primary",
     onClick: onApply,

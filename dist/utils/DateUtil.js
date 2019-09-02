@@ -111,12 +111,12 @@ var getDecade = function getDecade(dt) {
 
 var roundUpDate = function roundUpDate(dt, diff, grain) {
   dt.endOf(grain);
-  diff && dt.add(grain, diff);
+  diff && dt.add(parseInt(diff, 10), grain);
 };
 
 var roundDownDate = function roundDownDate(dt, diff, grain) {
   dt.startOf(grain);
-  diff && dt.add(grain, diff);
+  diff && dt.add(parseInt(diff, 10), grain);
 };
 
 var parseDatePart = function parseDatePart(dt) {

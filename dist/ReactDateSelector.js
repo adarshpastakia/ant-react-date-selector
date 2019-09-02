@@ -45,9 +45,9 @@ var ReactDateSelector = _react.default.forwardRef(function (_ref, ref) {
   }, [open]);
 
   var changeVisible = function changeVisible(v) {
-    setOpen(v);
+    setOpen(!props.readOnly && v);
 
-    if (onVisibleChange) {
+    if (!props.readOnly && onVisibleChange) {
       onVisibleChange(v);
     }
   };
@@ -65,8 +65,8 @@ var ReactDateSelector = _react.default.forwardRef(function (_ref, ref) {
     placement: "bottomLeft",
     visible: isOpen,
     onVisibleChange: changeVisible,
-    overlayClassName: "ards-dropdown-overlay",
-    content: isOpen && _react.default.createElement(_RdsDropdown.RdsDropdown, _extends({}, props, {
+    overlayClassName: "ards-dropdown",
+    content: _react.default.createElement(_RdsDropdown.RdsDropdown, _extends({}, props, {
       onDateChange: updateValue
     }))
   }, _react.default.createElement(_RdsInput.RdsInput, _extends({

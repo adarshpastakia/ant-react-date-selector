@@ -11,8 +11,6 @@ var _antd = require("antd");
 
 var _ = require("..");
 
-var _typestyle = require("typestyle");
-
 var _RdsRelativeInput = require("./RdsRelativeInput");
 
 var _DateParts = require("../utils/DateParts");
@@ -39,13 +37,6 @@ var Presets = {
   quarterLast: "$quarter-1",
   yearLast: "$year-1"
 };
-var css = (0, _typestyle.stylesheet)({
-  label: {
-    fontWeight: 500,
-    fontSize: ".8em",
-    fontVariant: "small-caps"
-  }
-});
 
 var RdsPresets = function RdsPresets(_ref) {
   var value = _ref.value,
@@ -79,7 +70,7 @@ var RdsPresets = function RdsPresets(_ref) {
       padding: 16
     }
   }, _react.default.createElement("div", {
-    className: css.label
+    className: "ards-label--section"
   }, "Quick Select"), _react.default.createElement(_antd.Input.Group, {
     compact: true
   }, _react.default.createElement(_RdsRelativeInput.RdsRelativeInput, {
@@ -95,14 +86,10 @@ var RdsPresets = function RdsPresets(_ref) {
   }, "Apply")), _react.default.createElement(_antd.Divider, {
     type: "horizontal"
   }), _react.default.createElement("div", {
-    className: css.label
+    className: "ards-label--section"
   }, "Presets"), _react.default.createElement("div", null, Object.keys(Presets).map(function (key) {
     return _react.default.createElement("div", {
-      style: {
-        width: 120,
-        display: "inline-block",
-        fontSize: ".8em"
-      },
+      className: "ards-quick--link",
       key: key
     }, _react.default.createElement("a", {
       onClick: function onClick() {

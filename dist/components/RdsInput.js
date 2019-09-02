@@ -41,13 +41,8 @@ var RdsInput = function RdsInput(_ref) {
       isOver = _useState2[0],
       setIsOver = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(_.DateUtil.label(value)),
-      _useState4 = _slicedToArray(_useState3, 2),
-      displayLabel = _useState4[0],
-      setDisplayLabel = _useState4[1];
-
-  (0, _react.useEffect)(function () {
-    setDisplayLabel(_.DateUtil.label(value));
+  var displayLabel = (0, _react.useMemo)(function () {
+    return _.DateUtil.label(value);
   }, [value]);
   var canClear = allowClear && !!value;
   return _react.default.createElement(_antd.Input, _extends({
