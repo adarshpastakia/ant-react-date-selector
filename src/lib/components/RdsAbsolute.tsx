@@ -10,12 +10,13 @@ import { isDateLike } from "../utils/Predicates";
 import { ConfigConsumer, ConfigConsumerProps } from "antd/lib/config-provider";
 
 export class RdsAbsolute extends React.PureComponent<{
+  dir?: "ltr" | "rtl";
   value: DateValue;
   onDateChange: (value: DateValue) => void;
 }> {
   state: any = { value: [moment(), moment()], valid: false };
 
-  componentWillMount(): void {
+  componentDidMount(): void {
     const { value } = this.props;
     this.updateFromProps(value);
   }
@@ -40,7 +41,7 @@ export class RdsAbsolute extends React.PureComponent<{
     const _self = this;
 
     return (
-      <div className="ards-date-range">
+      <div className="ards-date-range" dir={this.props.dir}>
         <ConfigConsumer>
           {({ getPrefixCls }: ConfigConsumerProps) => {
             const prefixCls = getPrefixCls("calendar");

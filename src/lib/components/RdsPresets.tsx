@@ -18,9 +18,10 @@ const Presets: { [key: string]: string } = {
 };
 
 export const RdsPresets: React.FC<{
+  dir?: "ltr" | "rtl";
   value: DateValue;
   onDateChange: (value: DateValue) => void;
-}> = ({ value, onDateChange }) => {
+}> = ({ value, onDateChange,dir }) => {
   const selectPreset = (preset: any) => {
     onDateChange(`${preset}|${preset}`);
   };
@@ -40,7 +41,7 @@ export const RdsPresets: React.FC<{
   }, [value]);
 
   return (
-    <div style={{ padding: 16 }}>
+    <div className="ards-tab-panel" dir={dir}>
       <div className="ards-label--section">Quick Select</div>
       <Input.Group compact>
         <RdsRelativeInput value={relDate} onDateChange={setRelDate} />

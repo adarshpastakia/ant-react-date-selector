@@ -1,8 +1,11 @@
 @import "~antd/dist/antd.less";
-
-@debug @ant-prefix;
+@import "./_rtl-support";
 
 .ards {
+  &-input {
+    width: 100%;
+  }
+
   &-dropdown {
     padding: 0;
     z-index: 1050;
@@ -14,6 +17,10 @@
     & .@{ant-prefix}-popover-inner-content {
       padding: 0;
     }
+  }
+
+  &-tab-panel {
+    padding: @padding-sm @padding-md;
   }
 
   &-dropdown--overlay {
@@ -45,12 +52,14 @@
   }
 
   &-toolbar {
-    padding: 8px 16px;
+    padding-top: @padding-md;
     text-align: right;
   }
 
   &-date-range {
     & .@{ant-prefix}-calendar-date-panel {
+      display: flex;
+      flex-flow: row nowrap;
       margin-top: -35px;
     }
 
@@ -71,6 +80,10 @@
       align-items: center;
       display: flex;
       flex-direction: row-reverse;
+    }
+
+    & .@{ant-prefix}-calendar-time-picker-btn {
+      margin: 0 @padding-sm;
     }
   }
 }

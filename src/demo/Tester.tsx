@@ -12,7 +12,7 @@ export const Tester = () => {
     <>
       <div className="x-section">Component</div>
       <Form layout="inline">
-        <Form.Item label="Date Selector">
+        <Form.Item label="Date Selector" help={`${date}`}>
           <ReactDateSelector
             value={date}
             onDateChange={setDate}
@@ -22,7 +22,6 @@ export const Tester = () => {
             size={isLarge ? "large" : "default"}
           />
         </Form.Item>
-        <Form.Item label="Actual value">{`${date}`}</Form.Item>
         <Form.Item label="Date value">
           {date ? DateUtil.parse(date)!.toString() : "undefined"}
         </Form.Item>
@@ -38,6 +37,23 @@ export const Tester = () => {
           <Switch checked={isLarge} onChange={c => setIsLarge(c)} />
         </Form.Item>
       </Form>
+      <br />
+
+      <div className="x-section">RTL Support</div>
+      <div dir="rtl">
+        <Form layout="inline">
+          <Form.Item label="Date Selector" help={<bdi>{`${date}`}</bdi>}>
+            <ReactDateSelector
+              value={date}
+              onDateChange={setDate}
+              allowClear
+              disabled={isDisabled}
+              readOnly={isReadonly}
+              size={isLarge ? "large" : "default"}
+            />
+          </Form.Item>
+        </Form>
+      </div>
     </>
   );
 };

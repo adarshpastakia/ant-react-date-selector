@@ -15,6 +15,7 @@ export const RdsInput: React.FC<RdsInputProps> = ({
   readOnly,
   allowClear,
   onClear,
+  className,
   forwardedRef,
   ...props
 }) => {
@@ -23,17 +24,20 @@ export const RdsInput: React.FC<RdsInputProps> = ({
 
   const canClear = allowClear && !!value;
 
+  const isDisabled = useMemo(() => disabled || readOnly, [disabled, readOnly]);
+
   return (
     <Input
       ref={forwardedRef}
       readOnly
+      className={[className, "ards-input"].join(" ")}
       disabled={disabled}
       value={displayLabel || ""}
       {...props}
-      onMouseOver={() => setIsOver(true)}
-      onMouseLeave={() => setIsOver(false)}
+      onMouseOver={() => !isDisabled && setIsOver(true)}
+      onMouseLeave={() => !isDisabled && setIsOver(false)}
       suffix={
-        <div onMouseOver={() => setIsOver(true)}>
+        <div onMouseOver={() => !isDisabled && setIsOver(true)}>
           <Icon
             style={{
               color: "rgba(0,0,0,.4)",
@@ -45,7 +49,6 @@ export const RdsInput: React.FC<RdsInputProps> = ({
           />
         </div>
       }
-      onChange={v => console.log(v)}
     />
   );
 };

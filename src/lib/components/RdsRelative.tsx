@@ -5,9 +5,10 @@ import { RdsRelativeInput } from "./RdsRelativeInput";
 import moment from "moment";
 
 export const RdsRelative: React.FC<{
+  dir?: "ltr" | "rtl";
   value: DateValue;
   onDateChange: (value: DateValue) => void;
-}> = ({ value, onDateChange }) => {
+}> = ({ value, onDateChange, dir }) => {
   const [isErrored, setErrored] = useState();
   const [start, setStart] = useState();
   const [end, setEnd] = useState();
@@ -31,8 +32,8 @@ export const RdsRelative: React.FC<{
   };
 
   return (
-    <div>
-      <div style={{ padding: 16 }}>
+    <div className="ards-tab-panel" dir={dir}>
+      <div>
         <div className="ards-label--section">From</div>
         <Input.Group compact>
           <RdsRelativeInput value={start} onDateChange={setStart} />

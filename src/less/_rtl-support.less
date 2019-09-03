@@ -1,0 +1,169 @@
+[dir="rtl"] {
+  &.ards-tab-panel {
+    text-align: right;
+  }
+
+  & .ards-toolbar {
+    text-align: left;
+  }
+
+  & .@{ant-prefix}-input-number-input {
+    text-align: right;
+  }
+
+  & .@{ant-prefix}-input-suffix {
+    left: 12px;
+    right: unset;
+  }
+
+  & [class*=" @{ant-prefix}-col-"],
+  & [class^="@{ant-prefix}-col-"] {
+    float: right;
+  }
+
+  & .@{ant-prefix}-input-affix-wrapper .@{ant-prefix}-input {
+    padding-left: @input-padding-horizontal-base;
+    padding-right: @input-padding-horizontal-base;
+
+    &-lg {
+      padding-left: @input-padding-horizontal-lg;
+      padding-right: @input-padding-horizontal-lg;
+    }
+
+    &-sm {
+      padding-left: @input-padding-horizontal-sm;
+      padding-right: @input-padding-horizontal-sm;
+    }
+
+    &:not(:last-child) {
+      padding-left: 30px;
+    }
+
+    &:not(:first-child) {
+      padding-right: 30px;
+    }
+  }
+
+  & .@{ant-prefix}-input-group > .@{ant-prefix}-input:last-child,
+  & .@{ant-prefix}-input-group-addon:first-child {
+    border-radius: 0 4px 4px 0;
+    border-right: 1px solid @border-color-base;
+  }
+
+  & .@{ant-prefix}-input-group > .@{ant-prefix}-input:last-child,
+  & .@{ant-prefix}-input-group-addon:last-child {
+    border-left: 1px solid @border-color-base;
+    border-radius: 4px 0 0 4px;
+    border-right: 0;
+  }
+
+  & .@{ant-prefix}-input-number-handler-wrap {
+    border-left: 0;
+    border-right: 1px solid @input-border-color;
+    left: 0;
+    right: unset;
+  }
+
+  & .@{ant-prefix}-select-arrow {
+    left: 11px;
+    right: unset;
+  }
+
+  & .@{ant-prefix}-input-clear-icon + i {
+    margin-left: 0;
+    margin-right: 6px;
+  }
+
+  & .@{ant-prefix}-select-selection-selected-value {
+    float: right;
+    padding-left: 20px;
+    padding-right: 0;
+  }
+
+  & .@{ant-prefix}-select-selection__placeholder {
+    left: 9px;
+    right: 0;
+    text-align: right;
+  }
+
+  && .@{ant-prefix}-input-group-compact {
+    & > *:first-child {
+      &,
+      & > .@{ant-prefix}-select-selection,
+      & > .@{ant-prefix}-input {
+        border-radius: 0 4px 4px 0;
+      }
+    }
+
+    & > *:last-child {
+      &,
+      & > .@{ant-prefix}-select-selection,
+      & > .@{ant-prefix}-input {
+        border-radius: 4px 0 0 4px;
+      }
+    }
+
+    & > *:not(:last-child) {
+      border-left-width: 1px;
+      margin-left: -1px;
+    }
+  }
+
+  & .@{ant-prefix}-calendar {
+    &-prev-century-btn,
+    &-prev-decade-btn,
+    &-prev-year-btn,
+    &-month-panel-prev-century-btn,
+    &-month-panel-prev-decade-btn,
+    &-month-panel-prev-year-btn,
+    &-year-panel-prev-century-btn,
+    &-year-panel-prev-decade-btn,
+    &-year-panel-prev-year-btn,
+    &-decade-panel-prev-century-btn,
+    &-decade-panel-prev-decade-btn,
+    &-decade-panel-prev-year-btn {
+      left: unset;
+      right: 7px;
+    }
+
+    &-next-century-btn,
+    &-next-decade-btn,
+    &-next-year-btn,
+    &-month-panel-next-century-btn,
+    &-month-panel-next-decade-btn,
+    &-month-panel-next-year-btn,
+    &-year-panel-next-century-btn,
+    &-year-panel-next-decade-btn,
+    &-year-panel-next-year-btn,
+    &-decade-panel-next-century-btn,
+    &-decade-panel-next-decade-btn,
+    &-decade-panel-next-year-btn {
+      left: 7px;
+      right: unset;
+    }
+
+    &-prev-month-btn {
+      left: unset;
+      right: 29px;
+    }
+
+    &-next-month-btn {
+      left: 29px;
+      right: unset;
+    }
+  }
+}
+
+.ards-dropdown--overlay.rtl {
+  & .@{ant-prefix}-tabs {
+    &-nav-scroll {
+      text-align: right;
+    }
+
+    &-nav,
+    &-tab {
+      transform: scaleX(-1);
+    }
+
+  }
+}

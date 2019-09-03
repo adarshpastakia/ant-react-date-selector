@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { DateValue } from "./utils/DateUtil";
 import { RdsDropdown } from "./components/RdsDropdown";
 import { InputProps } from "antd/es/input";
 import { RdsInput } from "./components/RdsInput";
 import { Input, Popover } from "antd";
+import { useIsLtr } from "./utils/isRtl";
 
 interface ReactDatePickerProps extends InputProps {
   value: DateValue;
@@ -15,8 +16,10 @@ interface ReactDatePickerProps extends InputProps {
 export const ReactDateSelector: React.FC<ReactDatePickerProps> = React.forwardRef<
   Input,
   ReactDatePickerProps
->(({ onDateChange, onVisibleChange, open, ...props }, ref) => {
+>(({ onDateChange, onVisibleChange, open, className, ...props }, ref) => {
   const [isOpen, setOpen] = useState(open);
+  const [isLtr, refRtl] = useIsLtr();
+  const refDropdown = useRef<Popover>(null);
 
   useEffect(() => {
     setOpen(open);
@@ -36,15 +39,25 @@ export const ReactDateSelector: React.FC<ReactDatePickerProps> = React.forwardRe
   };
 
   return (
-    <Popover
-      trigger="click"
-      placement="bottomLeft"
-      visible={isOpen}
-      onVisibleChange={changeVisible}
-      overlayClassName="ards-dropdown"
-      content={<RdsDropdown {...props} onDateChange={updateValue} />}
-    >
-      <RdsInput onClear={updateValue} forwardedRef={ref} {...props} />
-    </Popover>
+    <div ref={refRtl}>
+      <Popover
+        ref={refDropdown}
+        trigger="click"
+        placement={isLtr ? "bottomLeft" : "bottomRight"}
+        visible={isOpen}
+        onVisibleChange={changeVisible}
+        overlayClassName="ards-dropdown"
+        content={
+          <RdsDropdown
+            outerRef={refDropdown}
+            {...props}
+            dir={isLtr ? "ltr" : "rtl"}
+            onDateChange={updateValue}
+          />
+        }
+      >
+        <RdsInput onClear={updateValue} forwardedRef={ref} className={className} {...props} />
+      </Popover>
+    </div>
   );
 });
