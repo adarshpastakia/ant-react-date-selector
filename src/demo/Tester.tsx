@@ -4,6 +4,7 @@ import { DateUtil, ReactDateSelector } from "../lib";
 
 export const Tester = () => {
   const [date, setDate] = useState<string | undefined>("$week|$now");
+  const [dateSingle, setDateSingle] = useState<string | undefined>("2020-02-02");
   const [isDisabled, setIsDisabled] = useState(false);
   const [isReadonly, setIsReadonly] = useState(false);
   const [isLarge, setIsLarge] = useState(false);
@@ -11,6 +12,22 @@ export const Tester = () => {
   return (
     <>
       <div className="x-section">Component</div>
+      <Form layout="inline">
+        <Form.Item label="Date Selector" help={`${dateSingle}`}>
+          <ReactDateSelector
+            value={dateSingle}
+            onDateChange={setDateSingle}
+            allowClear
+            single
+            disabled={isDisabled}
+            readOnly={isReadonly}
+            size={isLarge ? "large" : "default"}
+          />
+        </Form.Item>
+        <Form.Item label="Date value">
+          {dateSingle ? DateUtil.parse(dateSingle)!.toString() : "undefined"}
+        </Form.Item>
+      </Form>
       <Form layout="inline">
         <Form.Item label="Date Selector" help={`${date}`}>
           <ReactDateSelector

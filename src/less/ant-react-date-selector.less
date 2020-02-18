@@ -68,8 +68,39 @@
     }
 
     &
-      .@{ant-prefix}-calendar-range.@{ant-prefix}-calendar-time
-      .@{ant-prefix}-calendar-range-middle {
+    .@{ant-prefix}-calendar-range.@{ant-prefix}-calendar-time
+    .@{ant-prefix}-calendar-range-middle {
+      background: rgba(0, 0, 0, 0.1);
+      height: 100%;
+      padding: 0;
+      width: 1px;
+    }
+
+    & .@{ant-prefix}-calendar-footer-btn {
+      align-items: center;
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    & .@{ant-prefix}-calendar-time-picker-btn {
+      margin: 0 @padding-sm;
+    }
+  }
+
+  &-date-single {
+    & .@{ant-prefix}-calendar-date-panel {
+      display: flex;
+      flex-flow: column nowrap;
+      margin-top: -40px;
+    }
+
+    & .@{ant-prefix}-calendar-input {
+      display: none;
+    }
+
+    &
+    .@{ant-prefix}-calendar-range.@{ant-prefix}-calendar-time
+    .@{ant-prefix}-calendar-range-middle {
       background: rgba(0, 0, 0, 0.1);
       height: 100%;
       padding: 0;

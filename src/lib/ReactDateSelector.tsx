@@ -10,13 +10,14 @@ interface ReactDatePickerProps extends InputProps {
   value: DateValue;
   onDateChange?: (v: DateValue) => void;
   open?: boolean;
+  single?: boolean;
   onVisibleChange?: (visible: boolean) => void;
 }
 
 export const ReactDateSelector: React.FC<ReactDatePickerProps> = React.forwardRef<
   Input,
   ReactDatePickerProps
->(({ onDateChange, onVisibleChange, open, className, ...props }, ref) => {
+>(({ onDateChange, onVisibleChange, single = false, open, className, ...props }, ref) => {
   const [isOpen, setOpen] = useState(open);
   const [isLtr, refRtl] = useIsLtr();
   const refDropdown = useRef<Popover>(null);
@@ -51,6 +52,7 @@ export const ReactDateSelector: React.FC<ReactDatePickerProps> = React.forwardRe
           <RdsDropdown
             outerRef={refDropdown}
             {...props}
+            single={single}
             dir={isLtr ? "ltr" : "rtl"}
             onDateChange={updateValue}
           />
