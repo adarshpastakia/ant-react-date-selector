@@ -81,8 +81,8 @@ function (_React$PureComponent) {
   }
 
   _createClass(RdsAbsolute, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       var value = this.props.value;
       this.updateFromProps(value);
     }
@@ -119,7 +119,8 @@ function (_React$PureComponent) {
       var _self = this;
 
       return _react.default.createElement("div", {
-        className: "ards-date-range"
+        className: "ards-date-range",
+        dir: this.props.dir
       }, _react.default.createElement(_configProvider.ConfigConsumer, null, function (_ref) {
         var getPrefixCls = _ref.getPrefixCls;
         var prefixCls = getPrefixCls("calendar");

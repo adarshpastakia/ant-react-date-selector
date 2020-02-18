@@ -33,8 +33,9 @@ var RdsInput = function RdsInput(_ref) {
       readOnly = _ref.readOnly,
       allowClear = _ref.allowClear,
       onClear = _ref.onClear,
+      className = _ref.className,
       forwardedRef = _ref.forwardedRef,
-      props = _objectWithoutProperties(_ref, ["value", "disabled", "readOnly", "allowClear", "onClear", "forwardedRef"]);
+      props = _objectWithoutProperties(_ref, ["value", "disabled", "readOnly", "allowClear", "onClear", "className", "forwardedRef"]);
 
   var _useState = (0, _react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -45,21 +46,25 @@ var RdsInput = function RdsInput(_ref) {
     return _.DateUtil.label(value);
   }, [value]);
   var canClear = allowClear && !!value;
+  var isDisabled = (0, _react.useMemo)(function () {
+    return disabled || readOnly;
+  }, [disabled, readOnly]);
   return _react.default.createElement(_antd.Input, _extends({
     ref: forwardedRef,
     readOnly: true,
+    className: [className, "ards-input"].join(" "),
     disabled: disabled,
     value: displayLabel || ""
   }, props, {
     onMouseOver: function onMouseOver() {
-      return setIsOver(true);
+      return !isDisabled && setIsOver(true);
     },
     onMouseLeave: function onMouseLeave() {
-      return setIsOver(false);
+      return !isDisabled && setIsOver(false);
     },
     suffix: _react.default.createElement("div", {
       onMouseOver: function onMouseOver() {
-        return setIsOver(true);
+        return !isDisabled && setIsOver(true);
       }
     }, _react.default.createElement(_antd.Icon, {
       style: {
@@ -71,10 +76,7 @@ var RdsInput = function RdsInput(_ref) {
       },
       type: isOver && canClear ? "close-circle" : "calendar",
       theme: isOver && canClear ? "filled" : "outlined"
-    })),
-    onChange: function onChange(v) {
-      return console.log(v);
-    }
+    }))
   }));
 };
 

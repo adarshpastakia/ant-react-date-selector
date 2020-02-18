@@ -40,7 +40,8 @@ var Presets = {
 
 var RdsPresets = function RdsPresets(_ref) {
   var value = _ref.value,
-      onDateChange = _ref.onDateChange;
+      onDateChange = _ref.onDateChange,
+      dir = _ref.dir;
 
   var selectPreset = function selectPreset(preset) {
     onDateChange("".concat(preset, "|").concat(preset));
@@ -66,9 +67,8 @@ var RdsPresets = function RdsPresets(_ref) {
     setRelDate(end === _DateParts.DateParts.NOW ? start : start === _DateParts.DateParts.NOW ? end : undefined);
   }, [value]);
   return _react.default.createElement("div", {
-    style: {
-      padding: 16
-    }
+    className: "ards-tab-panel",
+    dir: dir
   }, _react.default.createElement("div", {
     className: "ards-label--section"
   }, "Quick Select"), _react.default.createElement(_antd.Input.Group, {

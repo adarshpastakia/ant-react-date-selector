@@ -29,7 +29,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var RdsRelative = function RdsRelative(_ref) {
   var value = _ref.value,
-      onDateChange = _ref.onDateChange;
+      onDateChange = _ref.onDateChange,
+      dir = _ref.dir;
 
   var _useState = (0, _react.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
@@ -70,11 +71,10 @@ var RdsRelative = function RdsRelative(_ref) {
     }
   };
 
-  return _react.default.createElement("div", null, _react.default.createElement("div", {
-    style: {
-      padding: 16
-    }
-  }, _react.default.createElement("div", {
+  return _react.default.createElement("div", {
+    className: "ards-tab-panel",
+    dir: dir
+  }, _react.default.createElement("div", null, _react.default.createElement("div", {
     className: "ards-label--section"
   }, "From"), _react.default.createElement(_antd.Input.Group, {
     compact: true

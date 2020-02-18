@@ -19,6 +19,8 @@ var _DateParts = require("../utils/DateParts");
 
 var _RdsRelative = require("./RdsRelative");
 
+var _RdsAbsoluteSingle = require("./RdsAbsoluteSingle");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
@@ -31,7 +33,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var RdsDropdown = function RdsDropdown(_ref) {
   var value = _ref.value,
-      onDateChange = _ref.onDateChange;
+      onDateChange = _ref.onDateChange,
+      dir = _ref.dir,
+      single = _ref.single,
+      outerRef = _ref.outerRef;
 
   var _useState = (0, _react.useState)("quick"),
       _useState2 = _slicedToArray(_useState, 2),
@@ -46,34 +51,49 @@ var RdsDropdown = function RdsDropdown(_ref) {
 
     if ((0, _Predicates.isDateLike)(start)) {
       setActiveTab("absolute");
-    } else if (start !== _DateParts.DateParts.NOW && end !== _DateParts.DateParts.NOW && start !== end) {
+    } else if (!single && start !== _DateParts.DateParts.NOW && end !== _DateParts.DateParts.NOW && start !== end) {
       setActiveTab("relative");
     } else {
       setActiveTab("quick");
     }
+
+    outerRef.current && outerRef.current.forceUpdate();
   }, [value]);
-  return _react.default.createElement(_antd.Tabs, {
-    className: "ards-dropdown--overlay",
+
+  var tabChanged = function tabChanged(t) {
+    setActiveTab(t);
+    outerRef.current && outerRef.current.forceUpdate();
+  };
+
+  return single ? _react.default.createElement(_RdsAbsoluteSingle.RdsAbsoluteSingle, {
+    value: value,
+    onDateChange: onDateChange,
+    dir: dir
+  }) : _react.default.createElement(_antd.Tabs, {
+    className: ["ards-dropdown--overlay", dir].join(" "),
     activeKey: activeTab,
-    onChange: setActiveTab
+    onChange: tabChanged
   }, _react.default.createElement(_antd.Tabs.TabPane, {
     key: "quick",
     tab: "Quick Select"
   }, _react.default.createElement(_RdsPresets.RdsPresets, {
     value: value,
-    onDateChange: onDateChange
-  })), _react.default.createElement(_antd.Tabs.TabPane, {
+    onDateChange: onDateChange,
+    dir: dir
+  })), !single && _react.default.createElement(_antd.Tabs.TabPane, {
     key: "relative",
     tab: "Relative"
   }, _react.default.createElement(_RdsRelative.RdsRelative, {
     value: value,
-    onDateChange: onDateChange
+    onDateChange: onDateChange,
+    dir: dir
   })), _react.default.createElement(_antd.Tabs.TabPane, {
     key: "absolute",
     tab: "Absolute"
   }, _react.default.createElement(_RdsAbsolute.RdsAbsolute, {
     value: value,
-    onDateChange: onDateChange
+    onDateChange: onDateChange,
+    dir: dir
   })));
 };
 

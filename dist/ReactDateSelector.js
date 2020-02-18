@@ -13,6 +13,8 @@ var _RdsInput = require("./components/RdsInput");
 
 var _antd = require("antd");
 
+var _isRtl = require("./utils/isRtl");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -32,14 +34,23 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 var ReactDateSelector = _react.default.forwardRef(function (_ref, ref) {
   var onDateChange = _ref.onDateChange,
       onVisibleChange = _ref.onVisibleChange,
+      _ref$single = _ref.single,
+      single = _ref$single === void 0 ? false : _ref$single,
       open = _ref.open,
-      props = _objectWithoutProperties(_ref, ["onDateChange", "onVisibleChange", "open"]);
+      className = _ref.className,
+      props = _objectWithoutProperties(_ref, ["onDateChange", "onVisibleChange", "single", "open", "className"]);
 
   var _useState = (0, _react.useState)(open),
       _useState2 = _slicedToArray(_useState, 2),
       isOpen = _useState2[0],
       setOpen = _useState2[1];
 
+  var _useIsLtr = (0, _isRtl.useIsLtr)(),
+      _useIsLtr2 = _slicedToArray(_useIsLtr, 2),
+      isLtr = _useIsLtr2[0],
+      refRtl = _useIsLtr2[1];
+
+  var refDropdown = (0, _react.useRef)(null);
   (0, _react.useEffect)(function () {
     setOpen(open);
   }, [open]);
@@ -60,19 +71,27 @@ var ReactDateSelector = _react.default.forwardRef(function (_ref, ref) {
     changeVisible(false);
   };
 
-  return _react.default.createElement(_antd.Popover, {
+  return _react.default.createElement("div", {
+    ref: refRtl
+  }, _react.default.createElement(_antd.Popover, {
+    ref: refDropdown,
     trigger: "click",
-    placement: "bottomLeft",
+    placement: isLtr ? "bottomLeft" : "bottomRight",
     visible: isOpen,
     onVisibleChange: changeVisible,
     overlayClassName: "ards-dropdown",
-    content: _react.default.createElement(_RdsDropdown.RdsDropdown, _extends({}, props, {
+    content: _react.default.createElement(_RdsDropdown.RdsDropdown, _extends({
+      outerRef: refDropdown
+    }, props, {
+      single: single,
+      dir: isLtr ? "ltr" : "rtl",
       onDateChange: updateValue
     }))
   }, _react.default.createElement(_RdsInput.RdsInput, _extends({
     onClear: updateValue,
-    forwardedRef: ref
-  }, props)));
+    forwardedRef: ref,
+    className: className
+  }, props))));
 });
 
 exports.ReactDateSelector = ReactDateSelector;
