@@ -1,5 +1,9 @@
 # React Date Selector
 
+
+> # DEPRECATED
+> ## This repository is moved to [https://github.com/adarshpastakia/ant-extensions](https://github.com/adarshpastakia/ant-extensions)
+
 ### React Date Selector for relative dates with DateMath
 
 ---
